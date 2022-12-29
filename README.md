@@ -1,3 +1,7 @@
+# Fullstack-Open-Part7
+
+A repository for exercises performed on part 7 : React router, custom hooks, styling app with CSS and webpack
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
