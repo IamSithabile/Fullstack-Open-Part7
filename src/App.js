@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useMatch } from 'react-router-dom'
 
 import { useState } from 'react'
 
@@ -7,6 +7,7 @@ import AnecdoteList from './components/AnecdoteList'
 import About from './pages/About'
 import CreateNew from './pages/CreateNew'
 import Footer from './components/Footer'
+import AnecdoteItem from './components/AnecdoteItem'
 
 const App = () => {
   const [anecdotes, setAnecdotes] = useState([
@@ -25,6 +26,12 @@ const App = () => {
       id: 2,
     },
   ])
+
+  const match = useMatch('/anecdotes/:id')
+
+  const anecdote = match
+    ? anecdotes.find(anecdote => anecdote.id === Number(match.params.id))
+    : null
 
   const [notification, setNotification] = useState('')
 
@@ -47,30 +54,34 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
-      <div>
-        <h1>Software anecdotes</h1>
+    <div>
+      <h1>Software anecdotes</h1>
 
-        <Menu />
+      <Menu />
 
-        <Routes>
-          <Route
-            path="/"
-            element={<AnecdoteList anecdotes={anecdotes} />}
-          />
-          <Route
-            path="/create"
-            element={<CreateNew addNew={addNew} />}
-          />
-          <Route
-            path="/about"
-            element={<About />}
-          />
-        </Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={<AnecdoteList {...{ anecdotes }} />}
+        />
 
-        <Footer />
-      </div>
-    </BrowserRouter>
+        <Route
+          path="/anecdotes/:id"
+          element={<AnecdoteItem {...{ anecdote }} />}
+        />
+
+        <Route
+          path="/create"
+          element={<CreateNew {...{ addNew }} />}
+        />
+        <Route
+          path="/about"
+          element={<About />}
+        />
+      </Routes>
+
+      <Footer />
+    </div>
   )
 }
 
