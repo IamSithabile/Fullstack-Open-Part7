@@ -12,12 +12,8 @@ import Notification from './components/Notification'
 
 const App = () => {
   const [notification, setNotification] = useState('')
-  const match = useMatch('/anecdotes/:id')
   const navigate = useNavigate()
 
-  const anecdote = match
-    ? anecdotes.find(anecdote => anecdote.id === Number(match.params.id))
-    : null
   const [anecdotes, setAnecdotes] = useState([
     {
       content: 'If it hurts, do it more often',
@@ -64,6 +60,11 @@ const App = () => {
 
     setAnecdotes(anecdotes.map(a => (a.id === id ? voted : a)))
   }
+
+  const match = useMatch('/anecdotes/:id')
+  const anecdote = match
+    ? anecdotes.find(anecdote => anecdote.id === Number(match.params.id))
+    : null
 
   return (
     <div>

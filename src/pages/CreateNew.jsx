@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { useField } from '../hooks'
 
 const CreateNew = props => {
@@ -15,6 +13,12 @@ const CreateNew = props => {
       info: info.value,
       votes: 0,
     })
+  }
+
+  const resetHandler = () => {
+    content.onReset()
+    author.onReset()
+    info.onReset()
   }
 
   return (
@@ -50,6 +54,7 @@ const CreateNew = props => {
         </div>
         <button>create</button>
       </form>
+      <button onClick={resetHandler}>reset</button>
     </div>
   )
 }
