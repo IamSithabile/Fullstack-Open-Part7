@@ -27,7 +27,9 @@ export const useCountry = name => {
         )
 
         setCountry(countries.data[0])
-      } catch (error) {}
+      } catch (error) {
+        return 'error'
+      }
     }
 
     fetchCountries(name)
