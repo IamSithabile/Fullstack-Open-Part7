@@ -11,7 +11,7 @@ const Persons = () => {
     }
 
     getPersons()
-  }, [personService])
+  }, [])
 
   const name = useField('text')
   const number = useField('text')

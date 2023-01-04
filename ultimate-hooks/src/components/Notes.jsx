@@ -3,15 +3,15 @@ import { useField, useResource } from '../hooks'
 
 const Notes = () => {
   const [notes, noteService] = useResource('http://localhost:3005/notes')
-
+  const { get } = noteService
   useEffect(() => {
     const getNotes = async () => {
-      const notes = await noteService.get()
+      const notes = await get()
       return notes
     }
 
     getNotes()
-  }, [noteService])
+  }, [])
 
   const handleNoteSubmit = event => {
     event.preventDefault()
